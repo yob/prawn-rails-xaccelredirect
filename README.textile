@@ -1,0 +1,13 @@
+A smaple Rails app that exhibits a technique for integrating Prawn and Nginx's
+X-Accel-Redirect feature into your Rails app for PDF production.
+
+= Instalation
+
+The app doesn't require or load ActiveRecord, so just fire it up to give it a
+whirl.
+
+    ./script/server
+
+To actually receive the generated PDFs you need to be proxying to the app
+through nginx and have X-Accel-Redirect setup. For full instructions see the
+article on my blog.
