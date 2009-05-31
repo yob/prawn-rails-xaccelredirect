@@ -1,0 +1,5 @@
+<ul>
+<% @products.each do |product| %>
+  <li><%= product.description %> [<%= link_to "view", product_path(product) %> <%= link_to "pdf", product_path(product, :format => :pdf) %>]</li>
+<% end %>
+</ul>
