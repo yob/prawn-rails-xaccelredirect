@@ -1,7 +1,7 @@
 A smaple Rails app that exhibits a technique for integrating Prawn and Nginx's
 X-Accel-Redirect feature into your Rails app for PDF production.
 
-= Instalation
+h2. Instalation
 
 The app doesn't require or load ActiveRecord, so just fire it up to give it a
 whirl.
