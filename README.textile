@@ -6,8 +6,10 @@ h2. Instalation
 The app doesn't require or load ActiveRecord, so just fire it up to give it a
 whirl.
 
-    ./script/server
+  ./script/server
 
 To actually receive the generated PDFs you need to be proxying to the app
 through nginx and have X-Accel-Redirect setup. For full instructions see the
 article on my blog.
+
+  "http://yob.id.au":http://yob.id.au
