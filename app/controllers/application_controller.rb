@@ -15,11 +15,18 @@ class ApplicationController < ActionController::Base
     else
       response.headers['Content-Type'] = "application/octet-stream"
     end
+    # Set a binary Content-Transfer-Encoding, or ActionController::AbstractResponse#assign_default_content_type_and_charset!
+    # will set a charset to the Content-Type header.
+    response.headers['Content-Transfer-Encoding'] = 'binary' unless response.headers['Content-Type'].match(/text\/.*/)
     response.headers['Content-Disposition'] = "attachment;"
     if opts[:filename]
-      response.headers['Content-Disposition'] << " filename= \"#{opts[:filename]}\""
+      response.headers['Content-Disposition'] = "attachment; filename= \"#{opts[:filename]}\""
+    else
+      response.headers['Content-Disposition'] = "inline"
     end
-    response.headers["X-Accel-Redirect"] = path
+    response.headers["X-Accel-Redirect"] = path    # nginx
+    response.headers['X-Sendfile'] = uri           # Apache and Lighttpd >= 1.5
+    response.headers['X-LIGHTTPD-send-file'] = uri # Lighttpd 1.4
 
     Rails.logger.info "#{path} sent to client using X-Accel-Redirect"
 
