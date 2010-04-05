@@ -24,9 +24,9 @@ class ApplicationController < ActionController::Base
     else
       response.headers['Content-Disposition'] = "inline"
     end
-    response.headers["X-Accel-Redirect"] = path    # nginx
-    response.headers['X-Sendfile'] = uri           # Apache and Lighttpd >= 1.5
-    response.headers['X-LIGHTTPD-send-file'] = uri # Lighttpd 1.4
+    response.headers["X-Accel-Redirect"] = path     # nginx
+    response.headers['X-Sendfile'] = path           # Apache and Lighttpd >= 1.5
+    response.headers['X-LIGHTTPD-send-file'] = path # Lighttpd 1.4
 
     Rails.logger.info "#{path} sent to client using X-Accel-Redirect"
 
